@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>jaldi five table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="msgFromServer"></div>
+    <div class="hover"></div>
+    <div class="messagebox" onclick="removeitem()">
+
+    </div>
+    <div id="jaldi5container">
+        <div class="accordian">
+            <div class="closebtn"><button onclick="closeaccordian(event)">close</button></div>
+            <div class="displayAll"></div>
+        </div>
+        <div class="main">
+            <div class="number"></div>
+            <div id="tablecontainer"></div>
+            <div class="buttons">
+                <input type="button" value="Pause" onclick="stopInterval()">
+                <input type="button" value="Resume" onclick="startInterval()">
+                <input type="button" value="add Table" onclick="addTable()">
+            </div>
+            <div class="container">
+                <div id="table"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./app2.js"></script>
+    <!-- <script src="./jaldhi5.js"></script> -->
+</body>
+
+</html>

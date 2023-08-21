@@ -1,0 +1,426 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: pink;
+
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+p {
+    font-size: 32px;
+}
+
+table {
+    background-color: #fff;
+    border: 2px solid black;
+    /* #aaa */
+    border-radius: 15px;
+}
+
+table td {
+    border: 1px solid #aaa;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 10px;
+
+}
+
+.hole {
+    background-color: #fff;
+    min-width: 52px;
+}
+
+.green {
+    color: #bbb;
+    background-color: green;
+}
+
+.accordian {
+    margin-top: 2.5em;
+    position: relative;
+}
+
+.accordian .closebtn {
+    position: absolute;
+    padding: 0.5em;
+    background-color: green;
+    color: white;
+    box-shadow: 0 0 7px forestgreen;
+    right: 216px;
+    top: -37px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.displayAll {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(45px, 50px));
+    grid-template-rows: repeat(10, minmax(45px, 50px));
+    gap: 4px;
+    padding: 0.8em;
+    justify-content: center;
+    max-width: 58%;
+    background-color: #fff;
+    margin: 3px auto;
+    align-items: stretch;
+    box-shadow: 0 0 9px rgba(0, 0, 0, .7);
+    border-radius: 15px;
+}
+
+.displayAll .grid-item {
+
+    border: 3px solid greenyellow;
+    font-size: 16px;
+    background-color: #f0f0f0;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-item span {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+
+.displayAll>span:nth-child(odd) {
+
+    border-radius: 50%;
+    background-color: #aaa;
+}
+
+.displayAll>span:nth-child(even) {
+    border-radius: 50%;
+
+    background-color: #ccc;
+}
+
+div.main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.main>.number {
+    width: 4em;
+    height: 4em;
+    text-align: center;
+    padding-top: 1.3em;
+    background-color: green;
+    border-radius: 50%;
+    color: white;
+    text-decoration: underline;
+    border-bottom: 2px solid black;
+    text-decoration-color: black;
+    padding-bottom: .3em;
+}
+
+table {
+    margin: 1px auto;
+}
+
+table>tr {
+
+    background-color: black;
+}
+
+table>tr>td {
+    background-color: bisque;
+    border: 2px solid black;
+
+}
+
+table>td:nth-child(odd) {
+    background-color: #fff;
+    color: red;
+}
+
+table>td:nth-child(even) {
+    background-color: #ccc;
+}
+
+iframe {
+    background-color: red;
+    width: 100%;
+    height: 700px;
+    position: absolute;
+    right: 0px;
+}
+
+.iframe>p {
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+    pointer-events: none;
+}
+
+.top {
+    background-color: orangered;
+}
+
+.center {
+    background-color: aqua;
+}
+
+.low {
+    background-color: yellow;
+}
+
+input[type="button"] {
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    height: 3em;
+    padding: 1em;
+    font-size: .8em;
+    border: none;
+    letter-spacing: 1px;
+    font-family: Poppins, sans-serif;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: skyblue;
+    color: darkgreen;
+}
+
+input[type="button"] :active {
+    background-color: green;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    width: 50%;
+    gap: 4px;
+    margin: auto;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: .5em .5em;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-around;
+    background-color: brown;
+}
+
+
+.hover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    /* background: black; */
+    filter: brightness(10%);
+    z-index: 2;
+}
+
+body {
+    position: relative;
+}
+
+.messagebox img {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.messagebox {
+    position: absolute;
+    background-color: #aaa;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url("../assets/images/gettyimages-1233465949-612x612.jpg");
+    background-position: start;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    border: 3px solid orange;
+    z-index: 18;
+}
+
+.messagebox::after {
+    display: block;
+    content: "click to remove";
+    background-color: darkblue;
+    color: white;
+    min-height: 32px;
+    font-size: 23px;
+    border-radius: 10px;
+    pointer-events: visibleFill;
+    padding-top: 8px;
+    text-align: center;
+    border-radius: 3px;
+    z-index: 20;
+    bottom: 0;
+    cursor: pointer;
+    clear: both;
+}
+
+.number {
+    font-size: 2em;
+    font-weight: 800;
+    background-color: transparent;
+    border: 3px solid cyan;
+    box-shadow: 0 0 8px rgba(255, 255, 255, .8);
+}
+
+.number>p {
+    background-color: transparent;
+}
+
+.accordian>.closebtn>button {
+    background-color: green;
+    color: white;
+    padding: .5em;
+    font-weight: bold;
+    color: white;
+    width: auto;
+    align-self: flex-end;
+}
+
+#tablecontainer {
+    margin: 1em auto;
+    position: relative;
+    left: auto;
+    right: auto;
+    display: block;
+    width: 100%;
+}
+
+@media only screen and (max-width:450px) {
+    .buttons input[type="button"] {
+        width: 100%;
+        color: white;
+        background-color: blue;
+        border-radius: 5px;
+        height: 1.9em;
+        padding: 0;
+        font-size: .8em;
+        border: none;
+        letter-spacing: 1px;
+        font-family: Poppins, sans-serif;
+        cursor: pointer;
+    }
+
+    .main .number {
+        width: 3em;
+        height: 3em;
+        text-align: center;
+        padding-top: 0.7em;
+        background-color: green;
+        border-radius: 50%;
+        color: white;
+        text-decoration: underline;
+        border-bottom: 2px solid black;
+        text-decoration-color: black;
+    }
+
+    .accordian .closebtn {
+        height: auto;
+        padding: 1px;
+        right: 70%;
+    }
+
+    .hole {
+        background-color: #fff;
+        min-width: 1.5em;
+        max-height: 1.5em;
+    }
+
+    table {
+        margin: 2px auto;
+        height: 8em;
+        font-weight: bold;
+        overflow-x: scroll;
+    }
+
+    table td {
+        border: 1px solid #aaa;
+        padding: 0em;
+        margin: 0em;
+        border-radius: 10px;
+    }
+
+    .displayAll {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(9px, 1fr));
+        grid-template-rows: repeat(10, minmax(9px, 1fr));
+        gap: 3px;
+        padding: 0.1em;
+        font-size: .1em;
+        font-weight: 800;
+        background-color: #fff;
+        max-width: 100%;
+    }
+
+    .displayAll .grid-item {
+        border: 3px solid transparent;
+    }
+}
+
+@media only screen and (min-width:450px) and (max-width:850px) {
+
+
+    .hole {
+        background-color: #fff;
+        min-width: 1em;
+        max-height: 1em;
+    }
+
+    table {
+        margin: 2px auto;
+        height: 8em;
+        font-weight: bold;
+        overflow-x: scroll;
+    }
+
+    table td {
+        border: 1px solid #aaa;
+        padding: 0em;
+        margin: 0em;
+        border-radius: 10px;
+    }
+
+    .displayAll {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(20px, 35px));
+        grid-template-rows: repeat(10, minmax(20px, 35px));
+        gap: 3px;
+        padding: 0.1em;
+        font-size: .1em;
+        font-weight: 800;
+        background-color: #fff;
+        max-width: 100%;
+    }
+
+    .accordian .closebtn {
+        height: auto;
+        padding: 2px;
+    }
+
+    .displayAll .grid-item {
+        border: 3px solid transparent;
+    }
+}
