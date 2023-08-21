@@ -1,3 +1,15 @@
+const socket = io('htttps://geroku.com/shankar543/housie.com');
+const username = "vijaya";
+let privateuser = ""
+var usersonline = [];
+let housie = {
+    jaldi5completed: null,
+    toplinecompleted: null,
+    middlelinecompleted: null,
+    bottomlinecompleted: null,
+    housiecompleted: null
+}
+let table_cnt = 0;
 let iframe = document.getElementsByTagName("iframe")[0];
 let tablecontainer=document.getElementById("tablecontainer")
 const displaynumber= document.getElementsByClassName("number")[0]
@@ -20,8 +32,27 @@ var _100rand_nums = new Set();
 let termcnt = 0;
 let table = {};
 let columnnames = ["01s", "10s", "20s", "30s", "40s", "50s", "60s", "70s", "80s", "90s"];
-let columnMap=new Map();
+let columnMap = new Map();
+    var top = document.getElementById("top");
+    var center = document.getElementById("center");
+    var low = document.getElementById("low");
+    var person={};
+    class user{
+        table=[];
+        name;
+        constructor(name,table){
+            this.name=name;
+            this.table=[];
+            this.table.push(table)
+            
+        }
+    }
+let messagesFromServer = [];
 
+socket.on('msgFromserver', msg => {
+    displayMsgBox(msg);
+    setTimeout(removeitem, 4000);
+})
 function getRandomInt(min, max) {
  return Math.floor(Math.random()*(max-min)+min);
 }
@@ -38,43 +69,6 @@ function createColumnMap() {
 }
 createColumnMap();
 
-// class tableclass{
-//     table = {};
-//     constructor(){
-//     this.table["top"]    = this.row();
-//     this.table["center"] = this.row();
-//     this.table["low"]    = this.row();
-// ;}
-
-// row(){
-// let r = new Set();
-// //r.size=0;
-// let holes = new Set();
-// //holes.size=0;
-
-// while(r.size != 9){
-// r.add(this.getRandom(1,100))
-// }
-
-// while(holes.size != 4){
-//     holes.add(this.getRandom(1,9))
-// }
-// var rowlist = Array.from(r);
-// var holeslist = Array.from(holes);
-// var finalrow=[];
-// while(holeslist.length){
-// rowlist[holeslist.shift()]="@"
-// }
-// finalrow=rowlist;
-// return finalrow;
-// }
-
-// getRandom(minimum,maximum){
-//     let min=Math.floor(minimum);
-//     let max=Math.ceil(maximum);
-//     return Math.floor((Math.random()*(max-min))+min);
-// }
-// }
 function getRandom(minimum,maximum){
     let min=Math.floor(minimum);
     let max=Math.ceil(maximum);
@@ -92,17 +86,9 @@ function isSizeIncreased(num){
 }
 
 function start(){
-    while(size<=99){
-        let num=getRandom(1,100)
-        if(isSizeIncreased(num)){
-            if(num){
-                arr.push(num);
-            }
-            }
-    }
+    socket.emit('start');
     fillnumbers();
-    //addTable();
-    setTimeout(addTable,10);
+    setTimeout(addTable, 10);
 }
 
 
@@ -121,10 +107,11 @@ function fillnumbers(){
     }
 }
 
+socket.on("displaycurrentnumber", currentnum => {
+    display(currentnum);
+})
 function display(currentnum){
-    let currentnum=arr.shift()
-    
-if(currentnum){
+    if(currentnum){
     newarr.push(currentnum)
     displaynumber.innerHTML="<p>"+currentnum+"</p>";
     readText(currentnum);
@@ -133,47 +120,25 @@ if(currentnum){
     document.getElementById(currentnum).style.color = "white";
 }else{
     if(newarr.length==99){
-     clearInterval(timerstart);
+        socket.emit('stop');
      let thankyouele = document.createElement("div")
      thankyouele.innerText="game completed thankyou";
      document.body.appendChild(thankyouele)
     }
 }
 }
-start();
-var timerstart=setInterval(display,4000)
+
+
 function stopInterval(){
-    if(timerstart){
-        timerstart = clearInterval(timerstart);
-    }
+    socket.emit('stop');
 }
-function startInterval(){
-    if(!timerstart){
-        timerstart=setInterval(display,4000)
-    }
-    
+function startInterval() {
+    socket.emit('start');
 }
 function framer(){
-    // mytable = iframe.children.filter(x=>x.tagname == "table")[0]
-    mytable = iframe.contentDocument.getElementsByTagName("table")[0];
-    
-
-
+mytable = iframe.contentDocument.getElementsByTagName("table")[0];
 }
-    var top = document.getElementById("top");
-    var center = document.getElementById("center");
-    var low = document.getElementById("low");
-    var person={};
-    class user{
-        table=[];
-        name;
-        constructor(name,table){
-            this.name=name;
-            this.table=[];
-            this.table.push(table)
-            
-        }
-    }
+
     
 
 function createTable(){
@@ -279,7 +244,15 @@ return tab;
     });
     tablecontainer.appendChild(mytable)
     }
-    function checkTable(table){
+
+function displayMsgBox(msg) {
+                        messagebox.innerText = msg;
+                        readText(messagebox.innerText);
+                        overlay.style.display="visible";
+                        messagebox.style.display="block";
+}    
+
+function checkTable(table) {
     let tabledata={}
     tabledata.istopcompleted = false;
     tabledata.iscentercompleted = false;
@@ -294,87 +267,58 @@ return tab;
         if(x.classList.contains("green")){
             return x;
         }}).length;
-        
-      
-   
-      
-        if(currentRowgreencount>=5){
-            // alert(currentName+" row completed")
-            
-            tabledata["is"+currentName+"completed"]=true;
+        if (currentRowgreencount >= 5) {
+            tabledata["is" + currentName + "completed"] = true;
             switch("is"+currentName+"completed"){
                 case "istopcompleted":{
-                    if(!istopcompletedDsiplayed){
+                    if(!housie.toplinecompleted){
                         stopInterval();
-                        messagebox.innerText = "top line completed";
-                        readText(messagebox.innerText);
-                        istopcompletedDsiplayed =true;
-                        overlay.style.display="visible";
-                        messagebox.style.display="block";
+                    socket.emit("toplinecompleted", username);
                     }
-                    
                     break;};
                 case "iscentercompleted":{
-                    if(!iscentercompletedDsiplayed){
+                    if(!housie.middlelinecompleted){
                         stopInterval();
-                        messagebox.innerText = "center line completed";
-                        readText(messagebox.innerText);
-                        iscentercompletedDsiplayed = true;
-                        overlay.style.display="visible";
-                        messagebox.style.display="block";
+                        socket.emit("middlelinecompleted", username);
                     }
                     break;}
                 case "islowcompleted":{
-                    if(!islowcompletedDsiplayed){
+                    if(!housie.bottomlinecompleted){
                         stopInterval();
-                        messagebox.innerText = "last line completed";
-                        readText(messagebox.innerText);
-                        islowcompletedDsiplayed = true;
-                        overlay.style.display="visible";
-                        messagebox.style.display="block";
-                        
+                      socket.emit("bottomlinecompleted", username);
                     }
                     break;}
             }
 
         }
         rowgreencount += currentRowgreencount;
-// alert(Array.from(row.children).filter(x=>{
-//     if(x.classList.contains("green")){
-//         return x;
-//     }}).length)    
+
 }
     if(rowgreencount>=5){
 
-        if(!isJaldiFiveCompletedDisplayed){
+        if(!housie.jaldi5completed){
             stopInterval();
-        messagebox.innerText = "jaldi 5 completed !.......";
-        readText(messagebox.innerText)
-            isJaldiFiveCompletedDisplayed = true;
-            overlay.style.display="visible";
-            messagebox.style.display="block";
+            socket.emit("jaldi5completed", username);
+        isJaldiFiveCompletedDisplayed = true;
         }
-        // alert("jaldi 5 for"+tabledata.id+"table");
     }
     if(rowgreencount == 15){
-        // alert("housie completed");
-        if(!isHousieCompleted){
+        if(!housie.housiecompleted){
             stopInterval();
             tabledata.isHousieCompleted = true;
-            messagebox.innerText = "housee completed !.........";
-            readText(messagebox.innerText);
-            overlay.style.display="visible";
-            messagebox.style.display="block";
+            socket.emit("housiecompleted", username);
         }
         
     }
     }
-    // function createTable(){
-    //     let name = "shankar" || window.prompt("hi your name place");
-    // let tab  = new tableclass();
-    // person = new user(name,tab)
-    // }
-    function addTable(){
+
+function addTable() {
+    table_cnt++;
+    if (table_cnt > 2) {
+        alert('you cannot add more than 2 tables');
+        return;
+    }
+    
     createTable()
     fillTable();
 }
@@ -419,3 +363,57 @@ function readText(txt){
 // private message to individual user 
 
 
+
+
+socket.emit('join', username);
+socket.on("usersonline", users => {
+    usersonline = users;
+    let usersDropdown = document.createElement("select")
+    let messageUser = document.createElement("option");
+    messageUser.value = undefined;
+    messageUser.innerText = "select user to send message"
+    usersDropdown.prepend(messageUser);
+    for (let user of user) {
+        let option = document.createElement("option");
+        option.innerText = user;
+        option.value = user;
+        usersDropdown.appendChild(option);
+    }
+    usersDropdown.addEventListener("change", (e) => {
+        privateuser = e.target.value;
+        openChatBox();
+    })
+});
+function sendchat(chat) {
+
+        if (!privateuser) {
+            alert("please select private user");
+        }
+        if (!chat.value) {
+            alert("please enter some message to send");
+        }
+        if (confirm(`send messag to ${privateuser}`)) {
+            socket.emit('privatemessage', { user: privateuser, message: chat.value });
+            chat.parentElement.remove();
+        }
+        
+}
+
+function openChatBox() {
+    let layer = document.createElement("div");
+    layer.classList.add('absolute');
+    let chat = document.createElement("input")
+    chat.addEventListener("blur",sendchat(chat));
+    layer.appendChild(chat);
+    let sendbtn = document.createElement("buttion");
+    sendbtn.innerText = "send";
+    sendbtn.addEventListener("click", sendChat(chat));
+    layer.appendChild(sendbtn);
+    document.body.appendChild(layer);
+}
+socket.on("gamestatuschanged", status => {
+    housie = status;
+});
+socket.on("endgame", () => {
+    displayMsgBox("game completed thankyou for playing");
+})
