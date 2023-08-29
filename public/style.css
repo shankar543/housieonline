@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,100&family=Rubik+Puddles&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-align: center;
     background-color: pink;
-
+    font-family: Poppins, sans-serif;
 }
 
 .green {
@@ -42,7 +44,7 @@ table td {
 }
 
 .accordian {
-    margin-top: 2.5em;
+    margin-top: 4.5em;
     position: relative;
 }
 
@@ -52,8 +54,8 @@ table td {
     background-color: green;
     color: white;
     box-shadow: 0 0 7px forestgreen;
-    right: 216px;
-    top: -37px;
+    right: 21%;
+    top: -9%;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -203,7 +205,7 @@ input[type="button"] :active {
     color: white;
 }
 
-.buttons {
+.gamecontrols {
     display: flex;
     width: 50%;
     gap: 4px;
@@ -227,7 +229,7 @@ input[type="button"] :active {
     right: 0;
     width: 100%;
     height: 100%;
-    /* background: black; */
+    background: black;
     filter: brightness(10%);
     z-index: 2;
 }
@@ -251,7 +253,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: url("../assets/images/gettyimages-1233465949-612x612.jpg");
+    background: url("./base.jpg");
     background-position: start;
     background-size: cover;
     background-repeat: no-repeat;
@@ -310,7 +312,7 @@ body {
 }
 
 @media only screen and (max-width:450px) {
-    .buttons input[type="button"] {
+    .gamecontrols input[type="button"] {
         width: 100%;
         color: white;
         background-color: blue;
@@ -422,5 +424,198 @@ body {
 
     .displayAll .grid-item {
         border: 3px solid transparent;
+    }
+}
+
+.promptcontainer>p, .promptcontainer>input {
+    padding: 0.3em;
+    margin-bottom: 1em;
+    border-radius: 9px;
+    text-transform: capitalize;
+    font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.9em;
+}
+
+.promptcontainer>input {
+    background-color: white;
+}
+
+.promptcontainer>p {
+    background-color: transparent;
+}
+
+.promptcontainer>button {
+    outline: none;
+    width: auto;
+    height: 2em;
+    text-align: left;
+    caret-color: crimson;
+    padding: 1em;
+    line-height: .2em;
+    border-radius: 10px;
+    font-weight: 800;
+}
+
+.display_none {
+    visibility: hidden;
+    pointer-events: none;
+    filter: brightness(20%);
+    cursor: not-allowed;
+}
+
+.promptcontainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: crimson;
+    color: white;
+    width: 50%;
+    height: 64%;
+    font-weight: bold;
+    flex-direction: column;
+    border-radius: 6px;
+    z-index: 30 !important;
+}
+
+body.promptcontainer {
+    overflow: hidden;
+}
+
+.userbanner {
+    padding: 0.5em;
+    border: 1px solid whitesmoke;
+    text-align: center;
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    width: auto;
+    min-height: 0;
+    font-weight: bold;
+    color: white;
+    /* background-color: crimson;
+    box-shadow: 0 0 6px crimson, 0 0 12px orangered; */
+    line-height: 0;
+    font-family: cursive;
+    letter-spacing: 1px;
+    text-align: left;
+    font-variant: all-petite-caps;
+    padding-bottom: 0.7em;
+    border-radius: 10px;
+}
+
+.absoluteChatBox {
+    position: absolute;
+    width: 66%;
+    height: 103%;
+    padding: 1em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    background-color: crimson;
+}
+
+.absoluteChatBox>input {
+    width: 41%;
+    height: 8%;
+    padding: 0.3em;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 6px rgba(255, 255, 255, 0.5);
+    margin: 1em;
+}
+
+.absoluteChatBox>button {
+    width: 20%;
+    height: 10%;
+    padding: .3em;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.absoluteChatBox>button :hover {
+    background-color: blue;
+    border: 3px solid white;
+}
+
+.roomlist {
+    position: fixed;
+    overflow: hidden;
+    z-index: 35;
+    height: 7.5%;
+    width: 10%;
+    bottom: 1em;
+    left: 2em;
+    padding: 1em auto;
+
+    border: 2px solid red;
+    background-color: #f0f0f0;
+    color: red;
+}
+
+.roomlist>li {
+    display: block;
+    padding: 1em;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background-color: crimson;
+    font-variant: unset;
+    /* text-decoration: blink; */
+    text-transform: capitalize;
+    /* text-emphasis: inherit; */
+    text-overflow: ellipsis;
+}
+
+
+
+.roomlist>li {
+    display: block;
+}
+
+.roomlist:hover {
+    height: auto;
+}
+
+select, select>option {
+    font-size: 1em;
+    border: 2px solid transparent;
+    border-bottom: 2px solid white;
+    color: white;
+    background-color: crimson;
+    margin: 0.5em auto;
+    border-radius: 0.4em;
+    padding: 0.5em;
+}
+
+.select>input {
+    width: 20%;
+    height: 10%;
+
+}
+
+.select>button {
+    padding: 1em;
+    background-color: transparent;
+    color: white;
+    font-size: 1em;
+    font-weight: 400;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:300px) {
+    .promptcontainer {
+        width: 100%;
+        height: 100%;
     }
 }

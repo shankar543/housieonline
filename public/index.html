@@ -7,7 +7,7 @@
 </head>
 
 <body>
-
+    <div id="roomnamejoined"></div>
     <div class="hover"></div>
     <div class="messagebox" onclick="removeitem()">
 
@@ -20,18 +20,23 @@
         <div class="main">
             <div class="number"></div>
             <div id="tablecontainer"></div>
-            <div class="buttons">
+            <div class="gamecontrols">
                 <input type="button" value="Pause" onclick="stopInterval()">
-                <input type="button" value="Resume" onclick="startInterval()">
-                <input type="button" value="add Table" onclick="addTable()">
+                <input type="button" value="Resume" onclick="resumeInterval()">
+                <input type="button" class="addTableButton" value="add Table" onclick="addTable()">
+                <input type="button" class="startButton" value="startGame" onclick="start()">
+                <input type="button" class="createButton" value="createRoom" onclick="createRoom()">
+                <!-- <input type="button" class="joinRoomButton" value="joinRoom" onclick="joinRoom()"> -->
             </div>
             <div class="container">
                 <div id="table"></div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="./app.js"></script>
-    <!-- <script src="./jaldhi5.js"></script> -->
+
 </body>
 
 </html>
