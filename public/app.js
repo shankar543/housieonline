@@ -261,7 +261,7 @@ return tab;
      tab = getHoles(tab)
         for(let x of tab.top){
             let td=document.createElement("td")
-            td.innerText = x;
+            td.innerText = x<10?"0"+x:x;
             if(x=="@"){
                 td.classList.add("hole");
                 td.innerText = "";
@@ -271,7 +271,7 @@ return tab;
         }
         for(let x of tab.center){
             let td=document.createElement("td")
-            td.innerText = x;
+            td.innerText = x<10?"0"+x:x;
             if(x=="@"){
                 td.classList.add("hole");
                 td.innerText = "";
@@ -280,7 +280,7 @@ return tab;
         }
         for(let x of tab.last){
             let td=document.createElement("td")
-            td.innerText = x;
+            td.innerText = x<10?"0"+x:x;
             if(x=="@"){
                 td.classList.add("hole");
                 td.innerText = "";
@@ -306,7 +306,7 @@ return tab;
     }
 
 function displayMsgBox(msg) {
-                        messagebox.innerText = msg;
+                        messagebox.innerHTML = msg;
                         readText(messagebox.innerText);
                         overlay.style.display="visible";
     messagebox.style.display = "block";
@@ -550,7 +550,9 @@ document.addEventListener('DOMContentLoaded',async function () {
      let userbanner = document.createElement('p');
             userbanner.classList.add('userbanner');
             document.body.append(userbanner);
-            
+    if (accordian) {
+        accordian.click();
+        }    
     try {
         
         username = await promptDialogBox("give your gamer name");
@@ -581,10 +583,13 @@ function promptDialogBox(prompt) {
         enterbtn.innerText = "Confirm";
         enterbtn.addEventListener("click", function (e) {
             if (!promptValueelm.value || promptValueelm?.value?.length < 2) {
-                alert("please enter a valid user user name it should be atleast 3 letter")
+                alert("please enter a valid user user name it should be atleast 3 letter");
             } else {
                 resolve(promptValueelm.value);
                 promptValueelm.parentElement.remove();
+                // if (!overlay?.classList?.contains('display_none')) {
+                //     overlay?.classList?.add('display_none')
+                // }
                 
             }
         }) 

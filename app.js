@@ -255,22 +255,22 @@ io.on('connection', (socket) => {
         socket.on("toplinecompleted", ({ roomname , username }) => {
             housieUpdater("toplinecompleted", roomname,socket.id, username);
             io.to(roomname).emit("gamestatuschanged", rooms[roomname]?.housie);
-            io.to(roomname).emit("msgFromserver", {msg:"top line completed by" + username});
+            io.to(roomname).emit("msgFromserver", {msg:"top line completed by " + username});
              });
         socket.on("middlelinecompleted", ({ roomname , username }) => {
             housieUpdater("middlelinecompleted",roomname, socket.id, username);
-            io.to(roomname).emit("msgFromserver", {msg:"middle line completed by" + username});
+            io.to(roomname).emit("msgFromserver", {msg:"middle line completed by " + username});
             io.to(roomname).emit("gamestatuschanged", rooms[roomname]?.housie);
              });
         socket.on("bottomlinecompleted", ({ roomname , username }) => {
             housieUpdater("bottomlinecompleted", roomname,socket.id, username);
-            io.to(roomname).emit("msgFromserver", {msg:"bottom line completed by" + username});
+            io.to(roomname).emit("msgFromserver", {msg:"bottom line completed by " + username});
             io.to(roomname).emit("gamestatuschanged", rooms[roomname]?.housie);
             });
         socket.on("housiecompleted", ({ roomname , username }) => {
             housieUpdater("housiecompleted", roomname,socket.id, username);
             io.to(roomname).emit("gamestatuschanged", rooms[roomname]?.housie);
-            io.to(roomname).emit("msgFromserver", {msg:"housie completed by" + username});
+            io.to(roomname).emit("msgFromserver", {msg:"housie completed by " + username});
             delete rooms.roomname;
             if (Object.keys(rooms).length) {
                 io.to(socket.id).emit("availableRooms", { rooms })

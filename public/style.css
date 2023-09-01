@@ -30,7 +30,11 @@ table td {
     padding: 1em;
     margin: 1em;
     border-radius: 10px;
+    cursor: pointer;
+}
 
+td[class="hole"] {
+    cursor: not-allowed;
 }
 
 .hole {
@@ -485,10 +489,14 @@ body.promptcontainer {
     overflow: hidden;
 }
 
+button {
+    cursor: pointer;
+}
+
 .userbanner {
     padding: 0.5em;
-    border: 1px solid whitesmoke;
-    text-align: center;
+    /* border: 1px solid whitesmoke; */
+    /* text-align: center; */
     position: fixed;
     top: 2%;
     left: 2%;
@@ -496,15 +504,14 @@ body.promptcontainer {
     min-height: 0;
     font-weight: bold;
     color: white;
-    /* background-color: crimson;
-    box-shadow: 0 0 6px crimson, 0 0 12px orangered; */
     line-height: 0;
-    font-family: cursive;
+    font-family: Poppins;
     letter-spacing: 1px;
     text-align: left;
     font-variant: all-petite-caps;
     padding-bottom: 0.7em;
     border-radius: 10px;
+    letter-spacing: 2px;
 }
 
 .absoluteChatBox {
@@ -594,12 +601,18 @@ select, select>option {
     margin: 0.5em auto;
     border-radius: 0.4em;
     padding: 0.5em;
+    cursor: pointer;
+    margin-right: 0.5em;
 }
 
 .select>input {
     width: 20%;
     height: 10%;
 
+}
+
+select>option {
+    cursor: pointer;
 }
 
 .select>button {
